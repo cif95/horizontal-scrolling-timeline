@@ -9,7 +9,6 @@ const  {
     StickyContainer
 } = style;
 
-export const STEP_WIDTH = 1800;
 
 export const Timeline = () => {
 
