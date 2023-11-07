@@ -1,15 +1,6 @@
 import { Col } from "style/layout";
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
 
-export const drawDashedLine = keyframes`
-
-    from {
-        stroke-dasharray: 10 12;
-    }
-    to {
-        stroke-dasharray: 16 24;
-    }
-`;
 
 const Container = styled.section`
 
@@ -32,21 +23,8 @@ const Box = styled.div`
 	width: 128px;
 	aspect-ratio: 1;
 	position: relative;
-	opacity: 0;
-	visibility: ${({$isHidden}) => $isHidden ? 'hidden' : 'visible'};
 
-	${({ $isVisible, $fadeOutDelay, $fadeInDelay }) => $isVisible 
-		? css`
-			opacity: 1;
-			transition: all 500ms ease;
-			transition-delay: ${$fadeInDelay};
-		` 
-		: css`
-			opacity: 0;
-			transition: all 500ms ease;
-			transition-delay: ${$fadeOutDelay};
-		`
-	}
+	visibility: ${({$isHidden}) => $isHidden ? 'hidden' : 'visible'};
 `;
 
 const DotBox = styled.div`
@@ -54,24 +32,10 @@ const DotBox = styled.div`
 	width: 128px;
 	aspect-ratio: 1;
 	position: relative;
-	opacity: 0;
 
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-
-	${({ $isVisible, $fadeOutDelay, $fadeInDelay }) => $isVisible 
-		? css`
-			opacity: 1;
-			transition: all 500ms ease;
-			transition-delay: ${$fadeInDelay};
-		` 
-		: css`
-			opacity: 0;
-			transition: all 500ms ease;
-			transition-delay: ${$fadeOutDelay};
-		`
-	}
 `;
 
 const Dot = styled.div`
@@ -95,25 +59,6 @@ const LineContainer = styled.div`
 	top: 50%;
 	left: 116%;
 	transform: translateY(-50%);
-
-	svg line{
-		transition: all 500ms ease;
-		opacity: 0;
-
-		${({ $isVisible, $fadeOutDelay, $fadeInDelay }) => $isVisible 
-			? css`
-				opacity: 1;
-				transition: all 500ms ease;
-				transition-delay: ${$fadeInDelay};
-				animation: ${drawDashedLine} 1s ease forwards ${$fadeInDelay};
-			` 
-			: css`
-				opacity: 0;
-				transition: all 500ms ease;
-				transition-delay: ${$fadeOutDelay};
-			`
-		}
-	}
 `;
 
 

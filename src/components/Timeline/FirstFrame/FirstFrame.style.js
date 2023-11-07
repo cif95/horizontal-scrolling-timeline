@@ -25,16 +25,12 @@ const Box = styled.div`
 	background: #D9D9D9;
 	width: 128px;
 	aspect-ratio: 1;
-	transition: all 500ms ease;
-
-	opacity: 0;
 	position: relative;
 
 	visibility: ${({$isHidden}) => $isHidden ? 'hidden' : 'visible'};
 
-	${({ $animationDelay }) => $animationDelay && css`
-		animation: 300ms ${fadeIn} linear ${$animationDelay} forwards;
-	`};
+	margin: ${({ $margin}) => $margin ?? 0};
+	position: relative;
 `;
 
 const LineContainer = styled.div`

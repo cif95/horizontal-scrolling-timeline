@@ -1,7 +1,7 @@
-import useElementOnScreen from "hooks/useElementOnScreen";
 import { style } from "./SecondFrame.style";
 import { ReactComponent as DottedLine } from "assets/dotted-line.svg";
 
+import { motion } from "framer-motion";
 
 const { 
 	Container,
@@ -12,41 +12,39 @@ const {
 	LineContainer
 } = style;
 
-export const SecondFrame = ({ isScrollingBack }) => {
-
-	const [ targetRef, isTargetOnScreen ] = useElementOnScreen(null, '0px', 0.3);
-	const [ dotTargetRef, isDotTargetOnScreen ] = useElementOnScreen();
+export const SecondFrame = () => {
 
 	return(
-		<Container ref={targetRef}>
+		<Container >
 			<BoxesColumn mainAxis="flex-start" >
 				<Box $isHidden/>
-				<Box 
-					$isVisible={isTargetOnScreen && !isScrollingBack}
-					$fadeInDelay={"200ms"}
-					$fadeOutDelay={"1200ms"}
+				<Box
+					as={motion.div}
+					initial={{ opacity: 0, scale: 0.5 }}
+					animate={{ opacity: 1, scale: 1 }}
+					transition={{ duration: 0.5, delay: 0.8 }}
 				>
-					<LineContainer 
-						$isVisible={isTargetOnScreen && !isScrollingBack}
-						$fadeInDelay={"300ms"}
-						$fadeOutDelay={"800ms"}
-					>
-						<DottedLine/>
-					</LineContainer>
+					<LineContainer >
+						<DottedLine
+							as={motion.line}
+							initial={{ pathLength: 0, strokeDasharray: '10 12' }}
+							transition={{ duration: 0.5, delay: 0.9 }}
+							whileInView={{ pathLength: 1, strokeDasharray: '16 24' }}
+						/>
+					</LineContainer> 
 				</Box>
 			</BoxesColumn>
 
 			<BoxesColumn mainAxis="flex-start">
 				<Box $isHidden/>
 
-				<DotBox
-					ref={dotTargetRef}
-					$isVisible={isDotTargetOnScreen && !isScrollingBack}
-					$fadeInDelay={"500ms"}
-					$fadeOutDelay={"500ms"}
-					$bgColor={"transparent"}
-				>
-					<Dot />
+				<DotBox	$bgColor={"transparent"}>
+					<Dot
+						as={motion.div}
+						initial={{ opacity: 0 }}
+						transition={{ duration: 0.5, delay: 1 }}
+						whileInView={{ opacity: 1 }} 
+					/>
 				</DotBox>
 			</BoxesColumn>
 
