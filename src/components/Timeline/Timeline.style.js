@@ -34,9 +34,9 @@ const StickyContainer = styled.div`
     overflow-y: hidden;
     overflow-x: hidden;
 
-    padding-top: 168px;
+    padding-top: 19.640vh;
     height: 100vh;
-    
+
     background-image: url(${bgImg});
     background-position: center;
     background-repeat: no-repeat;

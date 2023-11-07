@@ -14,8 +14,8 @@ const {
 
 export const SecondFrame = ({ isScrollingBack }) => {
 
-	const [ targetRef, isTargetOnScreen ] = useElementOnScreen(null, '0px', 0.2);
-	const [ dotTargetRef, isDotTargetOnScreen ] = useElementOnScreen(null, '0px', 1);
+	const [ targetRef, isTargetOnScreen ] = useElementOnScreen(null, '0px', 0.3);
+	const [ dotTargetRef, isDotTargetOnScreen ] = useElementOnScreen();
 
 	return(
 		<Container ref={targetRef}>
@@ -28,7 +28,7 @@ export const SecondFrame = ({ isScrollingBack }) => {
 				>
 					<LineContainer 
 						$isVisible={isTargetOnScreen && !isScrollingBack}
-						$fadeInDelay={"500ms"}
+						$fadeInDelay={"300ms"}
 						$fadeOutDelay={"800ms"}
 					>
 						<DottedLine/>
@@ -42,7 +42,7 @@ export const SecondFrame = ({ isScrollingBack }) => {
 				<DotBox
 					ref={dotTargetRef}
 					$isVisible={isDotTargetOnScreen && !isScrollingBack}
-					$fadeInDelay={"350ms"}
+					$fadeInDelay={"500ms"}
 					$fadeOutDelay={"500ms"}
 					$bgColor={"transparent"}
 				>

@@ -74,7 +74,7 @@ const CurvedLineContainer = styled(LineContainer)`
 
 const BoxesColumn = styled(Col)`
 
-	gap: 84px;
+	gap: 8.870vh;
 	height: 100%;
 `;
 

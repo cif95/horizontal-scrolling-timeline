@@ -85,9 +85,8 @@ const Dot = styled.div`
 
 const BoxesColumn = styled(Col)`
 
-	gap: 84px;
+	gap: 8.870vh;
 	height: 100%;
-	max-height: 578px;
 `;
 
 const LineContainer = styled.div`

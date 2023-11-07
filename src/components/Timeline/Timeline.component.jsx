@@ -19,7 +19,7 @@ export const Timeline = () => {
 
     const updateWrapperSize = useCallback(() => {
 
-        const stikyContainerHeight = stickyContainerRef.current.scrollWidth - 900;
+        const stikyContainerHeight = stickyContainerRef.current.scrollWidth - stickyContainerRef.current.clientHeight;
         wrapperRef.current.setAttribute('style', 'height: ' + stikyContainerHeight + 'px');
 
     }, []);
