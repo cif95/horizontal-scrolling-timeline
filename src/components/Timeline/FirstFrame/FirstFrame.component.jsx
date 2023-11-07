@@ -12,11 +12,14 @@ const {
 } = style;
 
 export const FirstFrame = () => {
+	
 	return(
 		<Container>
-			<BoxesColumn mainAxis="center">
+			<BoxesColumn mainAxis="flex-start">
 
-				<Box $margin="0 0 27px" $animationDelay="0ms">
+				<Box $isHidden/>
+
+				<Box $animationDelay="0ms">
 
 					<LineContainer $animationDelay="300ms">
 						<DottedLine/>

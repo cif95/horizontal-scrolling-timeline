@@ -27,9 +27,10 @@ const Box = styled.div`
 	aspect-ratio: 1;
 	transition: all 500ms ease;
 
-	margin: ${({ $margin}) => $margin ?? 0};
 	opacity: 0;
 	position: relative;
+
+	visibility: ${({$isHidden}) => $isHidden ? 'hidden' : 'visible'};
 
 	${({ $animationDelay }) => $animationDelay && css`
 		animation: 300ms ${fadeIn} linear ${$animationDelay} forwards;
@@ -75,7 +76,6 @@ const BoxesColumn = styled(Col)`
 
 	gap: 84px;
 	height: 100%;
-	max-height: 578px;
 `;
 
 
