@@ -1,12 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { style } from "./Timeline.style.js";
+import { Wrapper, StickyContainer } from "./Timeline.style.js";
+
 import { FirstFrame } from "./FirstFrame/FirstFrame.component.jsx";
 import { SecondFrame } from "./SecondFrame/SecondFrame.component.jsx";
 
-const  {
-    Wrapper,
-    StickyContainer
-} = style;
 
 
 export const Timeline = () => {

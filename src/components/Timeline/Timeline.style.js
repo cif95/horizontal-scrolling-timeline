@@ -1,31 +1,28 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import bgImg from "assets/gradient-background.png";
 
-export const fadeIn = keyframes`
+export const LineContainer = styled.div`
 
-    from { opacity: 0; }
-    to { opacity: 1 ; }
+	position: absolute;
+	top: 50%;
+	left: 116%;
+	transform: translateY(-50%);
 `;
 
-export const drawDashedLine = keyframes`
+export const CurvedLineContainer = styled(LineContainer)`
 
-    from {
-        opacity: 0;
-        stroke-dasharray: 10 12;
-    }
-    to {
-        opacity: 1;
-        stroke-dasharray: 16 24;
-    }
+	transform: none;
+	bottom: ${({$bottom}) => $bottom ?? "69%"};
+	top: ${({$top}) => $top ?? "unset"};
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 
     width: 100%;
     position: relative;
 `;
 
-const StickyContainer = styled.div`
+export const StickyContainer = styled.div`
 
     display: flex;
     position: sticky;
@@ -42,6 +39,3 @@ const StickyContainer = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
 `;
-
-
-export const style = { Wrapper, StickyContainer }

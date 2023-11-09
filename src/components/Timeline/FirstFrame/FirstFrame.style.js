@@ -1,23 +1,20 @@
 import { Col } from "style/layout";
-import styled, { css } from "styled-components";
-import { fadeIn, drawDashedLine } from "../Timeline.style";
+import styled from "styled-components";
 
 
 const Container = styled.section`
 
     flex-shrink: 0;
     height: 100%;
+	width: 1800px;
     position: relative;
 
     display: flex;
 	flex-direction: row;
 	gap: 385px;
 
-    width: 1800px;
-
 	padding-left: 287px;
 `;
-
 
 const Box = styled.div`
 
@@ -26,47 +23,8 @@ const Box = styled.div`
 	width: 128px;
 	aspect-ratio: 1;
 	position: relative;
-
 	visibility: ${({$isHidden}) => $isHidden ? 'hidden' : 'visible'};
-
-	margin: ${({ $margin}) => $margin ?? 0};
-	position: relative;
 `;
-
-const LineContainer = styled.div`
-
-	position: absolute;
-	top: 50%;
-	left: 116%;
-	transform: translateY(-50%);
-
-	svg line{
-		opacity: 0;
-		transition: all 500ms ease;
-
-		${({ $animationDelay }) => $animationDelay && css`
-			animation: ${drawDashedLine} 1s ease forwards ${$animationDelay};
-		`};
-	}
-`;
-
-const CurvedLineContainer = styled(LineContainer)`
-
-	transform: none;
-	bottom: ${({$bottom}) => $bottom ?? "69%"};
-	top: ${({$top}) => $top ?? "unset"};
-
-	svg path {
-		opacity: 0;
-		animation: ${drawDashedLine} 1s ease forwards 500ms;
-		transition: all 500ms ease;
-
-		${({ $animationDelay }) => $animationDelay && css`
-			animation: ${drawDashedLine} 1s ease forwards ${$animationDelay};
-		`};
-	}
-`;
-
 
 const BoxesColumn = styled(Col)`
 
@@ -78,7 +36,5 @@ const BoxesColumn = styled(Col)`
 export const style = {
 	Container,
 	Box,
-	BoxesColumn,
-	LineContainer,
-	CurvedLineContainer
+	BoxesColumn
 };
