@@ -32,12 +32,12 @@ export const StickyContainer = styled.div`
 
     padding-top: 19.640vh;
     height: 100vh;
-
-    background: rgb(14,13,37);
-    background: -moz-radial-gradient(circle, rgba(14,13,37,1) 30%, rgba(23,23,83,1) 67%, rgba(47,41,120,1) 100%);
-    background: -webkit-radial-gradient(circle, rgba(14,13,37,1) 30%, rgba(23,23,83,1) 67%, rgba(47,41,120,1) 100%);
-    background: radial-gradient(circle, rgba(14,13,37,1) 30%, rgba(23,23,83,1) 67%, rgba(47,41,120,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0e0d25",endColorstr="#2f2978",GradientType=1); 
+    
+    background: rgb(0,0,0);
+    background: -moz-radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(3,3,4,1) 67%, rgba(37,77,82,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(3,3,4,1) 67%, rgba(37,77,82,1) 100%);
+    background: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(3,3,4,1) 67%, rgba(37,77,82,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#254d52",GradientType=1); 
 `;
 
 
