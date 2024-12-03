@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import bgImg from "assets/gradient-background.png";
 
 export const fadeIn = keyframes`
 
@@ -53,10 +52,12 @@ const StickyContainer = styled.div`
     padding-top: 168px;
 
     height: 100vh;
-    background-image: url(${bgImg});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+    background: rgb(14,13,37);
+    background: -moz-radial-gradient(circle, rgba(14,13,37,1) 30%, rgba(23,23,83,1) 67%, rgba(47,41,120,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(14,13,37,1) 30%, rgba(23,23,83,1) 67%, rgba(47,41,120,1) 100%);
+    background: radial-gradient(circle, rgba(14,13,37,1) 30%, rgba(23,23,83,1) 67%, rgba(47,41,120,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0e0d25",endColorstr="#2f2978",GradientType=1); 
 `;
 
 
