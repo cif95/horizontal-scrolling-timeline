@@ -1,23 +1,22 @@
-import { useEffect, useRef, useCallback } from "react";
-import { style } from "./Timeline.style.js";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Wrapper, StickyContainer } from "./Timeline.style.js";
+
 import { FirstFrame } from "./FirstFrame/FirstFrame.component.jsx";
 import { SecondFrame } from "./SecondFrame/SecondFrame.component.jsx";
 
-const  {
-    Header,
-    Wrapper,
-    StickyContainer
-} = style;
 
 
 export const Timeline = () => {
+
+    const [isScrollingLeft, setIsScrollingLeft] = useState(false);
+    const [y, setY] = useState(0);
 
     const stickyContainerRef = useRef();
     const wrapperRef = useRef();
 
     const updateWrapperSize = useCallback(() => {
 
-        const stikyContainerHeight = stickyContainerRef.current.scrollWidth - 900;
+        const stikyContainerHeight = stickyContainerRef.current.scrollWidth - stickyContainerRef.current.clientHeight;
         wrapperRef.current.setAttribute('style', 'height: ' + stikyContainerHeight + 'px');
 
     }, []);
@@ -30,15 +29,24 @@ export const Timeline = () => {
         const endPoint = wrapperRef.current.offsetHeight;
 
         if (scrollY > startingPoint && scrollY < endPoint) {
-            
             const currentPoint = scrollY - startingPoint;
             stickyContainerRef.current.scrollLeft = currentPoint;
         }
 
-    },[]);
+        if (y > scrollY) {
+            setIsScrollingLeft(true);
+            
+        } else if (y < scrollY) {
+            setIsScrollingLeft(false);
+        }
+
+        setY(scrollY);
+
+    },[y]);
 
     useEffect(() => {
 
+        setY(window.scrollY);
         updateWrapperSize();
     
         window.addEventListener("scroll", scrollHandler);
@@ -51,10 +59,9 @@ export const Timeline = () => {
 
     return(
         <Wrapper ref={wrapperRef}>
-            <Header />
             <StickyContainer ref={stickyContainerRef} >
-                <FirstFrame/>
-                <SecondFrame/>
+                <FirstFrame />
+                <SecondFrame isScrollingBack={isScrollingLeft}/>
             </StickyContainer>
         </Wrapper>
     )

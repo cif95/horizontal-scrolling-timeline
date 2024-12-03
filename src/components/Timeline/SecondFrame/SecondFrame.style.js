@@ -1,6 +1,6 @@
 import { Col } from "style/layout";
-import styled, { css } from "styled-components";
-import { fadeIn, drawDashedLine } from "../Timeline.style";
+import styled from "styled-components";
+
 
 const Container = styled.section`
 
@@ -11,10 +11,10 @@ const Container = styled.section`
     display: flex;
 	flex-direction: row;
 	gap: 385px;
+	padding-left: 24px;
 
     width: 1300px;
 `;
-
 
 const Box = styled.div`
 
@@ -22,15 +22,20 @@ const Box = styled.div`
 	background: #D9D9D9;
 	width: 128px;
 	aspect-ratio: 1;
-	margin-bottom: 27px;
 	position: relative;
 
-	opacity: ${({$visible}) => $visible ? 1 : 0};
-	transition: all 500ms ease;
+	visibility: ${({$isHidden}) => $isHidden ? 'hidden' : 'visible'};
+`;
 
-	${({ $animate, $animationDelay }) => $animate && css`
-		animation: 300ms ${fadeIn} linear ${$animationDelay} forwards;
-	`};
+const DotBox = styled.div`
+
+	width: 128px;
+	aspect-ratio: 1;
+	position: relative;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 `;
 
 const Dot = styled.div`
@@ -39,22 +44,13 @@ const Dot = styled.div`
 	background: #D9D9D9;
 	width: 76px;
 	aspect-ratio: 1;
-	margin-bottom: 27px;
-
-	opacity: ${({$visible}) => $visible ? 1 : 0};
-	transition: all 500ms ease;
-
-	${({ $animate, $animationDelay }) => $animate && css`
-		animation: 300ms ${fadeIn} linear ${$animationDelay} forwards;`
-	};
+	line-height: 128px;
 `;
-
 
 const BoxesColumn = styled(Col)`
 
-	gap: 84px;
+	gap: 8.870vh;
 	height: 100%;
-	max-height: 578px;
 `;
 
 const LineContainer = styled.div`
@@ -63,21 +59,13 @@ const LineContainer = styled.div`
 	top: 50%;
 	left: 116%;
 	transform: translateY(-50%);
-
-	svg line{
-		opacity: ${({$visible}) => $visible ? 1 : 0};
-		transition: all 500ms ease;
-
-		${({ $animate, $animationDelay }) => $animate && css`
-			animation: ${drawDashedLine} 1s ease forwards ${$animationDelay};
-		`};
-	}
 `;
 
 
 export const style = {
 	Container,
 	Box,
+	DotBox,
 	Dot,
 	BoxesColumn,
 	LineContainer

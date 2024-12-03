@@ -1,50 +1,49 @@
-import { useState } from "react";
-import useElementOnScreen from "hooks/useElementOnScreen";
 import { style } from "./SecondFrame.style";
-import { ReactComponent as DottedLine } from "assets/dotted-line.svg";
-
+import { motion } from "framer-motion";
+import { AnimatedLineOnView } from "components/motions/AnimatedLineOnView.component";
 
 const { 
 	Container,
 	BoxesColumn,
 	Box,
-	Dot,
-	LineContainer
+	DotBox,
+	Dot
 } = style;
 
 export const SecondFrame = () => {
 
-	const [isAnimationEnded, setIsAnimationEnded] = useState(false);
-
-	const [ targetRef, isTargetOnScreen ] = useElementOnScreen(null, '0px', 0.2);
-	const [ dotTargetRef, isDotTargetOnScreen ] = useElementOnScreen();
+	const boxAnimation = {
+		hidden: { opacity: 0, scale: 0.5 },
+		visible: { opacity: 1, scale: 1 }
+	};
 
 	return(
-		<Container ref={targetRef}>
-			<BoxesColumn mainAxis="center" >
+		<Container >
+			
+			<BoxesColumn mainAxis="flex-start" >
+				<Box $isHidden/>
 				<Box 
-					$animate={isTargetOnScreen && !isAnimationEnded}
-					$animationDelay="200ms"
-					$visible={isAnimationEnded}
+					as={motion.div}
+					variants={boxAnimation}
+					transition={{delay: 0.8}}
+					initial="hidden"
+					animate="visible"
 				>
-					<LineContainer 
-						$animationDelay="500ms"
-						$visible={isAnimationEnded}
-						$animate={isTargetOnScreen && !isAnimationEnded}
-					>
-						<DottedLine/>
-					</LineContainer>
+					<AnimatedLineOnView delay={0.2}/>
 				</Box>
 			</BoxesColumn>
 
-			<BoxesColumn mainAxis="center">
-				<Dot 
-					ref={dotTargetRef}
-					$animate={isDotTargetOnScreen && !isAnimationEnded}
-					$animationDelay="350ms"
-					$visible={isAnimationEnded}
-					onAnimationEnd={() => setIsAnimationEnded(true)}
-				/>
+			<BoxesColumn mainAxis="flex-start">
+				<Box $isHidden/>
+				<DotBox	$bgColor={"transparent"}>
+					<Dot
+						as={motion.div}
+						variants={boxAnimation}
+						initial="hidden"
+						whileInView="visible"
+						transition={{ duration: 0.2, delay: 0.4 }}
+					/>
+				</DotBox>
 			</BoxesColumn>
 
 		</Container>

@@ -1,56 +1,36 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
-export const fadeIn = keyframes`
+export const LineContainer = styled.div`
 
-    from { opacity: 0; }
-    to { opacity: 1 ; }
+	position: absolute;
+	top: 50%;
+	left: 116%;
+	transform: translateY(-50%);
 `;
 
-export const drawDashedLine = keyframes`
+export const CurvedLineContainer = styled(LineContainer)`
 
-    from {
-        opacity: 0;
-        stroke-dasharray: 10 12;
-    }
-    to {
-        opacity: 1;
-        stroke-dasharray: 16 24;
-    }
+	transform: none;
+	bottom: ${({$bottom}) => $bottom ?? "69%"};
+	top: ${({$top}) => $top ?? "unset"};
 `;
 
-
-
-const Header = styled.header`
-
-    height: 120px;
-    
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-
-    border-bottom: 2px solid magenta;
-`;
-
-
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 
     width: 100%;
     position: relative;
 `;
 
-
-const StickyContainer = styled.div`
-
-    overflow-x: hidden;
+export const StickyContainer = styled.div`
 
     display: flex;
     position: sticky;
-    overflow-y: hidden;
     top:0;
 
-    padding-top: 168px;
+    overflow-y: hidden;
+    overflow-x: hidden;
 
+    padding-top: 19.640vh;
     height: 100vh;
 
     background: rgb(14,13,37);
@@ -63,6 +43,5 @@ const StickyContainer = styled.div`
 
 export const style = {
     Wrapper,
-    Header,
     StickyContainer
 }

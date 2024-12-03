@@ -1,74 +1,89 @@
 import { style } from "./FirstFrame.style";
-import { ReactComponent as DottedLine } from "assets/dotted-line.svg";
-import { ReactComponent as CurvedLine } from "assets/curved-dotted-line.svg";
-import { ReactComponent as CurvedLineToDown } from "assets/dotted-line-facing-down.svg";
+import { AnimatedList } from "components/motions/AnimatedList.component";
+import { AnimatedLine } from "components/motions/AnimatedLine.component";
+import { AnimatedCurvedLine } from "components/motions/AnimatedLineCurved.component";
+
+import { motion } from "framer-motion";
 
 const { 
 	Container,
 	BoxesColumn,
-	Box,
-	LineContainer,
-	CurvedLineContainer
+	Box
 } = style;
 
 export const FirstFrame = () => {
+
+	const boxAnimation = {
+		hidden: { opacity: 0, scale: 0.5 },
+		visible: { opacity: 1, scale: 1 }
+	};
+	
 	return(
 		<Container>
-			<BoxesColumn mainAxis="center">
-
-				<Box $margin="0 0 27px" $animationDelay="0ms">
-
-					<LineContainer $animationDelay="300ms">
-						<DottedLine/>
-					</LineContainer>
-
-					<CurvedLineContainer $animationDelay="0ms">
-						<CurvedLine/>
-					</CurvedLineContainer>
-
-				</Box>
-			</BoxesColumn>
 
 			<BoxesColumn mainAxis="flex-start">
-				<Box $animationDelay="300ms">
-					<LineContainer $animationDelay="1300ms">
-						<DottedLine/>
-					</LineContainer>
-				</Box>
-				<Box $animationDelay="600ms">
-
-					<LineContainer $animationDelay="1700ms">
-						<DottedLine/>
-					</LineContainer>
-
-					<CurvedLineContainer 
-						$animationDelay="2000ms"
-						$bottom="unset"
-						$top="70%"
-					>
-						<CurvedLineToDown/>
-					</CurvedLineContainer>
-
+				<Box $isHidden/>
+				<Box 
+					as={motion.div}
+					variants={boxAnimation}
+					initial="hidden"
+					animate="visible"
+				>
+					<AnimatedLine/>
+					<AnimatedCurvedLine/>
 				</Box>
 			</BoxesColumn>
+
+			<AnimatedList>
+				<BoxesColumn mainAxis="flex-start">
+					<Box as={motion.div} variants={boxAnimation}>
+						<AnimatedLine delay={0.3}/>
+					</Box>
+					<Box as={motion.div} variants={boxAnimation}>
+						<AnimatedLine delay={0.4}/>
+						<AnimatedCurvedLine 
+							facingDown
+							topOffset={"70%"}
+							bottomOffset={"unset"}
+							delay={0.5}
+						/>
+					</Box>
+				</BoxesColumn>
+			</AnimatedList>
 
 			<BoxesColumn mainAxis="flex-start">
-
-				<Box $animationDelay="1800ms">
-
-					<CurvedLineContainer 
-						$animationDelay="3000ms"
-						$bottom="unset"
-						$top="50%"
-					>
-						<CurvedLineToDown/>
-					</CurvedLineContainer>
+				<Box 
+					as={motion.div}
+					variants={boxAnimation}
+					initial="hidden"
+					animate="visible"
+					transition={{delay: 0.5}}
+				>
+					<AnimatedCurvedLine
+						facingDown
+						topOffset={"40%"}
+						bottomOffset={"unset"}
+						delay={0.6}
+					/>
 				</Box>
-
-				<Box $animationDelay="2100ms"/>
-				<Box $animationDelay="2400ms"/>
+				<Box 
+					as={motion.div}
+					variants={boxAnimation}
+					initial="hidden"
+					animate="visible"
+					transition={{delay: 0.7}}
+				>
+					<AnimatedLine delay={0.6}/>
+				</Box>
+				<Box 
+					as={motion.div}
+					variants={boxAnimation}
+					initial="hidden"
+					animate="visible"
+					transition={{delay: 0.9}}
+				/>
 			</BoxesColumn>
-
+			
 		</Container>
 	)
 }
